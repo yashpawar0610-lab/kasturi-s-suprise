@@ -228,26 +228,32 @@ $$('.polaroid-card').forEach(makeDraggable);
 function closeLightbox() { $('#lightbox').classList.remove('visible'); }
 
 /* ===================== Loading Screen ===================== */
+function dismissLoader() {
+  const loadingScreen = document.getElementById('loading-screen');
+  if (!loadingScreen) return;
+  loadingScreen.classList.add('hidden-loader');
+  setTimeout(() => { loadingScreen.style.display = 'none'; }, 900);
+}
+window.dismissLoader = dismissLoader;
+
 function initLoadingScreen() {
-  const loadingScreen = $('#loading-screen');
-  const loadingBarFill = document.querySelector('.loading-bar-fill');
+  const loadingScreen = document.getElementById('loading-screen');
+  const barFill = document.getElementById('loading-bar-fill');
+  const enterBtn = document.getElementById('enter-btn');
   if (!loadingScreen) return;
 
-  // Animate bar to 100% over 2.5 seconds
   let progress = 0;
   const interval = setInterval(() => {
     progress += 2;
-    if (loadingBarFill) loadingBarFill.style.width = progress + '%';
+    if (barFill) barFill.style.width = Math.min(progress, 100) + '%';
     if (progress >= 100) {
       clearInterval(interval);
-      // Fade out loading screen after bar completes
+      // Auto-dismiss after bar completes
       setTimeout(() => {
-        loadingScreen.style.opacity = '0';
-        loadingScreen.style.transition = 'opacity 0.8s ease';
-        setTimeout(() => {
-          loadingScreen.style.display = 'none';
-        }, 800);
-      }, 300);
+        dismissLoader();
+      }, 400);
+      // Also show the Enter button as a fallback
+      if (enterBtn) enterBtn.classList.add('visible');
     }
   }, 50);
 }

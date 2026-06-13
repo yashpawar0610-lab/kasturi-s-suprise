@@ -6,6 +6,32 @@
   <title>Happy Birthday, Kasturi ❤️ | My Gossip & Crime Partner</title>
   <meta name="description" content="A special interactive corner of the internet made for my favourite crime and gossip partner. Happy Birthday, Kasturi!" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0d0015;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.8s ease;
+    }
+    #loading-screen.hidden-loader {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loading-container { text-align: center; }
+    .loading-heart { font-size: 3rem; margin-bottom: 1rem; animation: pulse 1s infinite; }
+    .loading-text { color: #e0aaff; font-size: 1.4rem; font-family: serif; margin-bottom: 1rem; }
+    .loading-sub { color: #9d4edd; font-size: 0.9rem; margin-top: 0.5rem; }
+    .loading-bar { width: 260px; height: 6px; background: #2d0057; border-radius: 10px; overflow: hidden; margin: 0 auto; }
+    .loading-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #9d4edd, #ff6eb4); border-radius: 10px; transition: width 0.05s linear; }
+    .enter-btn { margin-top: 1.5rem; padding: 0.6rem 2rem; background: linear-gradient(135deg, #9d4edd, #ff6eb4); color: white; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer; display: none; }
+    .enter-btn.visible { display: inline-block; }
+    @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.15);} }
+  </style>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤫</text></svg>" />
 </head>
 <body>
@@ -22,8 +48,9 @@
   <div class="loading-container">
     <div class="loading-heart">🤫💜🕵️‍♀️</div>
     <p class="loading-text">Connecting to Gossip Server...</p>
-    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+    <div class="loading-bar"><div class="loading-bar-fill" id="loading-bar-fill"></div></div>
     <p class="loading-sub">Please don't let your parents see this 😂</p>
+    <button class="enter-btn" id="enter-btn" onclick="dismissLoader()">✨ Enter the Surprise ✨</button>
   </div>
 </div>
 
