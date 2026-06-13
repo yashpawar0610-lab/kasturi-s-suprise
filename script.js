@@ -227,6 +227,31 @@ function makeDraggable(card) {
 $$('.polaroid-card').forEach(makeDraggable);
 function closeLightbox() { $('#lightbox').classList.remove('visible'); }
 
+/* ===================== Loading Screen ===================== */
+function initLoadingScreen() {
+  const loadingScreen = $('#loading-screen');
+  const loadingBarFill = document.querySelector('.loading-bar-fill');
+  if (!loadingScreen) return;
+
+  // Animate bar to 100% over 2.5 seconds
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += 2;
+    if (loadingBarFill) loadingBarFill.style.width = progress + '%';
+    if (progress >= 100) {
+      clearInterval(interval);
+      // Fade out loading screen after bar completes
+      setTimeout(() => {
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.transition = 'opacity 0.8s ease';
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 800);
+      }, 300);
+    }
+  }, 50);
+}
+
 /* ===================== Init ===================== */
 document.addEventListener('DOMContentLoaded', () => {
   // hide all pages except first
@@ -237,6 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
     letterBody.dataset.fulltext = letterBody.textContent.trim();
     letterBody.textContent = '';
   }
+  // Start loading screen dismissal
+  initLoadingScreen();
 });
 
 // Export functions for HTML onclick attributes
