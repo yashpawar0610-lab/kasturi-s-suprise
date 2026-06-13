@@ -231,31 +231,25 @@ function closeLightbox() { $('#lightbox').classList.remove('visible'); }
 function dismissLoader() {
   const loadingScreen = document.getElementById('loading-screen');
   if (!loadingScreen) return;
-  loadingScreen.classList.add('hidden-loader');
+  loadingScreen.classList.add('hidden');
   setTimeout(() => { loadingScreen.style.display = 'none'; }, 900);
 }
 window.dismissLoader = dismissLoader;
 
 function initLoadingScreen() {
   const loadingScreen = document.getElementById('loading-screen');
-  const barFill = document.getElementById('loading-bar-fill');
   const enterBtn = document.getElementById('enter-btn');
   if (!loadingScreen) return;
 
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += 2;
-    if (barFill) barFill.style.width = Math.min(progress, 100) + '%';
-    if (progress >= 100) {
-      clearInterval(interval);
-      // Auto-dismiss after bar completes
-      setTimeout(() => {
-        dismissLoader();
-      }, 400);
-      // Also show the Enter button as a fallback
-      if (enterBtn) enterBtn.classList.add('visible');
-    }
-  }, 50);
+  // The CSS animation already fills the bar over 2.5s
+  // Auto-dismiss after bar animation completes (2.5s) + small buffer
+  setTimeout(() => {
+    dismissLoader();
+    if (enterBtn) enterBtn.classList.add('visible');
+  }, 3200);
+
+  // Also allow clicking anywhere on the loading screen to dismiss it
+  loadingScreen.addEventListener('click', dismissLoader);
 }
 
 /* ===================== Init ===================== */
