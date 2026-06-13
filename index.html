@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Kasturi ❤️ | My Gossip & Crime Partner</title>
+  <meta name="description" content="A special interactive corner of the internet made for my favourite crime and gossip partner. Happy Birthday, Kasturi!" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤫</text></svg>" />
+</head>
+<body>
+
+<!-- ==================== CUSTOM CURSOR ==================== -->
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
+
+<!-- ==================== PARTICLE CANVAS ==================== -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ==================== LOADING SCREEN ==================== -->
+<div id="loading-screen">
+  <div class="loading-container">
+    <div class="loading-heart">🤫💜🕵️‍♀️</div>
+    <p class="loading-text">Connecting to Gossip Server...</p>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+    <p class="loading-sub">Please don't let your parents see this 😂</p>
+  </div>
+</div>
+
+<!-- ==================== PAGE TRANSITION ==================== -->
+<div class="page-transition" id="page-transition">💜</div>
+
+<!-- ==================== NAVIGATION DOTS ==================== -->
+<div class="page-dots" id="page-dots">
+  <button class="page-dot active" onclick="goToPage(1)" title="Home"></button>
+  <button class="page-dot" onclick="goToPage(2)" title="Chronicles"></button>
+  <button class="page-dot" onclick="goToPage(3)" title="Memories"></button>
+  <button class="page-dot" onclick="goToPage(4)" title="Letter"></button>
+  <button class="page-dot" onclick="goToPage(5)" title="Celebration"></button>
+</div>
+
+<!-- ==================== BACK NAV ==================== -->
+<nav class="back-nav" id="back-nav">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+</nav>
+
+<!-- ==================== MUSIC WIDGET ==================== -->
+<div class="music-widget" id="music-widget">
+  <button class="music-btn" id="music-btn" onclick="toggleMusic()">🎵</button>
+  <div class="music-info">
+    <span class="music-title">Happy Birthday 🎂</span>
+    <span class="music-status" id="music-status-txt">Tap to play</span>
+  </div>
+</div>
+
+<!-- ===================================================
+     PAGE 1 — LANDING
+     =================================================== -->
+<div class="page active" id="page1">
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+  <div class="bg-blob blob3"></div>
+
+  <div class="hero-content">
+    <div class="sparkle-badge">✨ &nbsp; June 8, 2026 &nbsp; ✨</div>
+
+    <h1 class="hero-title">Happy Birthday,<br>Kasturi 💜</h1>
+
+    <p class="hero-subtitle">
+      Welcome to our private corner of the internet — built exclusively for
+      my favourite gossip partner, crime partner, headache, and the most
+      irreplaceable person in my life. 🤫
+    </p>
+
+    <div class="hero-stats">
+      <div class="stat-pill">🕵️‍♀️ Crime Partners</div>
+      <div class="stat-pill">☕ Gossip Partners</div>
+      <div class="stat-pill">📞 Late-night Callers</div>
+      <div class="stat-pill">🌸 Besties Forever</div>
+    </div>
+
+    <div class="card-preview-wrapper">
+      <div class="preview-glow"></div>
+      <div class="preview-card">
+        <span class="preview-emoji">🤫</span>
+        <div class="preview-caption">Secret Gossip Log: ACTIVE</div>
+        <div class="preview-sub">Classification: TOP SECRET 🔐</div>
+      </div>
+    </div>
+
+    <button class="cta-btn" id="open-surprise-btn" onclick="goToPage(2)">
+      <span>Unlock Our Secrets</span>
+      <span>🤫🔐</span>
+    </button>
+  </div>
+
+  <div class="scroll-hint">
+    <span>scroll to enter</span>
+    <div class="scroll-dot"></div>
+    <div class="scroll-dot"></div>
+  </div>
+</div>
+
+<!-- ===================================================
+     PAGE 2 — THE CHRONICLES: CALL SIMULATOR & GOSSIP METER
+     =================================================== -->
+<div class="page" id="page2">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">🕵️‍♀️ Crime Partner Files</div>
+    <h2 class="section-title">The Gossip Partner Chronicles ☕</h2>
+    <div class="glow-divider"></div>
+    <p class="section-subtitle">A look into our infinite late-night conversations and gossips.</p>
+  </div>
+
+  <div class="page2-grid">
+    <!-- Gossip Vibe Meter -->
+    <div class="gossip-meter-card" data-reveal>
+      <div class="card-icon">🔥</div>
+      <h3 class="card-h3">Gossip & Crime Vibe Checker</h3>
+      <p class="card-p">Slide to measure the heat of our latest gossip session...</p>
+
+      <div class="meter-slider-container">
+        <input type="range" min="1" max="100" value="50" class="meter-slider" id="gossip-slider" oninput="updateGossipMeter(this.value)">
+        <div class="meter-labels">
+          <span>Mild Tea ☕</span>
+          <span>Spicy 🌶️</span>
+          <span>FBI Alert 🚨</span>
+        </div>
+      </div>
+
+      <div class="meter-status" id="meter-status-box">
+        <div class="status-indicator" id="status-dot"></div>
+        <span id="meter-status-text">Gossip level: Spicy! 🌶️</span>
+      </div>
+      <p class="meter-description" id="meter-desc-text">We're definitely sharing some secrets about that random contact right now.</p>
+
+      <!-- Fun facts ticker -->
+      <div class="gossip-fact-box">
+        <span class="fact-label">📌 Crime Log:</span>
+        <span class="fact-text" id="crime-fact">You talked for 3 hours when your parents went for a 30-min walk 😭</span>
+      </div>
+    </div>
+
+    <!-- Call Simulator -->
+    <div class="call-simulator-card" data-reveal>
+      <div class="phone-container" id="phone-container">
+
+        <!-- Screen 1: Incoming Call -->
+        <div class="phone-screen active" id="screen-incoming">
+          <div class="phone-notch"></div>
+          <div class="phone-avatar">👩‍💼</div>
+          <div class="phone-caller">Kasturi 💜</div>
+          <div class="phone-label">Gossip Partner Calling...</div>
+          <div class="phone-ring-animation">
+            <div class="ring-wave"></div>
+            <div class="ring-wave"></div>
+          </div>
+          <div class="incoming-actions">
+            <button class="phone-decline-btn" onclick="declineCall()">
+              <span class="phone-icon-btn decline">🛑</span>
+              <span>Decline</span>
+            </button>
+            <button class="phone-accept-btn" onclick="acceptCall()">
+              <span class="phone-icon-btn accept">📞</span>
+              <span>Accept</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Screen 2: Active Call -->
+        <div class="phone-screen" id="screen-active">
+          <div class="phone-notch"></div>
+          <div class="active-caller">Kasturi 💜</div>
+          <div class="active-timer" id="call-timer">00:00</div>
+          <div class="soundwave-container">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+          </div>
+          <div class="gossip-text-ticker" id="gossip-ticker">"Bro you won't believe what happened..."</div>
+          <button class="panic-btn" onclick="triggerCallPanic()">🚪 PARENT DETECTED!</button>
+          <div class="active-actions">
+            <button class="end-call-btn" onclick="endCall()">📞</button>
+          </div>
+        </div>
+
+        <!-- Screen 3: Panic / Fake Study Screen -->
+        <div class="phone-screen" id="screen-panic">
+          <div class="math-header">
+            <span>Discrete Mathematics (MATH-302)</span>
+            <span class="battery">🔋98%</span>
+          </div>
+          <div class="math-content">
+            <h4>Chapter 4.2: Graph Theory</h4>
+            <p>A connected acyclic graph is called a tree. Trees are used in many areas of computer science...</p>
+            <div class="math-formula">V − E + F = 2</div>
+            <p class="math-small">Tap anywhere to restore call 🤫</p>
+          </div>
+          <div class="math-tap-zone" onclick="restoreCallFromPanic()"></div>
+        </div>
+
+      </div>
+      <p class="phone-hint">Remember those <strong>sneaky calls</strong> when your parents went for a walk? Hit "PARENT DETECTED" and test your panic reflexes! 😂</p>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goToPage(3)">
+      <span>View Our Memories 📸</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===================================================
+     PAGE 3 — DRAGGABLE POLAROIDS & TIMELINE
+     =================================================== -->
+<div class="page" id="page3">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">📸 Captured In Time</div>
+    <h2 class="section-title">Kasturi in Frames 🌸</h2>
+    <div class="glow-divider"></div>
+    <p class="section-subtitle">Drag the polaroids around! Double-click any photo to zoom in. 💕</p>
+  </div>
+
+  <!-- Draggable Board -->
+  <div class="polaroid-board" id="polaroid-board">
+    <div class="polaroid-card" id="card-1" style="top:8%;left:4%;" data-reveal>
+      <div class="tape-effect"></div>
+      <img src="photos/photo1.jpg" alt="Kasturi sunglasses selfie" class="polaroid-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="polaroid-placeholder" style="display:none"><span class="ph-icon">😎</span><span class="ph-text">photo1.jpg</span></div>
+      <div class="polaroid-caption">Cutest Gossip Partner 🎀</div>
+    </div>
+    <div class="polaroid-card" id="card-2" style="top:12%;left:36%;" data-reveal>
+      <div class="tape-effect"></div>
+      <img src="photos/photo2.jpg" alt="Kasturi round glasses" class="polaroid-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="polaroid-placeholder" style="display:none"><span class="ph-icon">👓</span><span class="ph-text">photo2.jpg</span></div>
+      <div class="polaroid-caption">My favourite headache 🤕💜</div>
+    </div>
+    <div class="polaroid-card" id="card-3" style="top:50%;left:8%;" data-reveal>
+      <div class="tape-effect"></div>
+      <img src="photos/photo3.jpg" alt="Kasturi flower selfie" class="polaroid-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="polaroid-placeholder" style="display:none"><span class="ph-icon">🌸</span><span class="ph-text">photo3.jpg</span></div>
+      <div class="polaroid-caption">Too much cuteness! 🥰</div>
+    </div>
+    <div class="polaroid-card" id="card-4" style="top:44%;left:42%;" data-reveal>
+      <div class="tape-effect"></div>
+      <img src="photos/photo4.jpg" alt="Kasturi wink pose" class="polaroid-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="polaroid-placeholder" style="display:none"><span class="ph-icon">😜</span><span class="ph-text">photo4.jpg</span></div>
+      <div class="polaroid-caption">Crime partner posing 🕵️‍♀️✨</div>
+    </div>
+    <div class="polaroid-card" id="card-5" style="top:22%;left:68%;" data-reveal>
+      <div class="tape-effect"></div>
+      <img src="photos/photo5.jpg" alt="Kasturi pink dress" class="polaroid-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="polaroid-placeholder" style="display:none"><span class="ph-icon">👗</span><span class="ph-text">photo5.jpg</span></div>
+      <div class="polaroid-caption">Pure elegance 💫💖</div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-section">
+    <div class="section-header" data-reveal style="padding-top:2rem;">
+      <div class="section-tag">⏳ Our Journey</div>
+      <h2 class="section-title">Memory Road 💜</h2>
+      <div class="glow-divider"></div>
+      <p class="section-subtitle">How two complete strangers became absolutely inseparable.</p>
+    </div>
+    <div class="timeline" id="timeline">
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">💬</div>
+        <div class="timeline-content">
+          <div class="timeline-date">The Very Beginning</div>
+          <div class="timeline-title">The Random Text 🥹</div>
+          <div class="timeline-text">Who would have thought that two complete strangers would become such an important part of each other's lives? It still feels unreal — one random text started everything. At that time we barely knew each other, and today you're one of the most precious people in my life.</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">☕</div>
+        <div class="timeline-content">
+          <div class="timeline-date">Daily Updates Era</div>
+          <div class="timeline-title">Ultimate Gossip Partners 📢</div>
+          <div class="timeline-text">From strangers to best friends, from random conversations to endless calls, from sharing small daily updates to knowing almost every little thing about each other's lives — our journey has been nothing short of beautiful.</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">🥊</div>
+        <div class="timeline-content">
+          <div class="timeline-date">Fights & Forgiveness</div>
+          <div class="timeline-title">Madam Must Be Convinced 😂</div>
+          <div class="timeline-text">We've had our fights — many of them — but we always found our way back. And let's be real, most of the time I was the one convincing Madam. 😂 But those silly arguments only showed how much our friendship truly mattered.</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">🤫</div>
+        <div class="timeline-content">
+          <div class="timeline-date">Late Night Secrets</div>
+          <div class="timeline-title">The Sneaky Calls & Quick Hang-ups 📞</div>
+          <div class="timeline-text">How can I forget those days when your parents went downstairs and you'd call me? We talked endlessly about everything and nothing. Then the moment you heard the door — the call vanished in a second. Hilarious. My absolute favourite memories. 😂</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">🎓</div>
+        <div class="timeline-content">
+          <div class="timeline-date">The Distance Chapter</div>
+          <div class="timeline-title">Parul University, Vadodara 📍</div>
+          <div class="timeline-text">When you moved to Vadodara, I was scared — <em>"Chhod yaar, shayad meri kismat mein close female friendship hai hi nahi."</em> But for once, life proved me completely wrong. Despite the distance, nothing changed. Daily calls, gossip, arguments — all continued exactly the same! 💜</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">💜</div>
+        <div class="timeline-content">
+          <div class="timeline-date">Right Now, Today</div>
+          <div class="timeline-title">One of the Most Wonderful Souls 🌟</div>
+          <div class="timeline-text">In this entire 1.5-year journey, I've realized I met one of the most wonderful souls I could have ever asked for. A girl who listens, cares, understands, gossips, annoys, and somehow makes ordinary days feel beautiful. That's you. Always. 🫶</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <button class="nav-btn" onclick="goToPage(4)">
+      <span>Open My Letter 💌</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===================================================
+     PAGE 4 — LETTER, FLIP CARDS & CERTIFICATE
+     =================================================== -->
+<div class="page" id="page4">
+
+  <!-- Envelope -->
+  <div class="envelope-section">
+    <div class="section-tag" data-reveal>💌 Unlocking My Heart</div>
+    <h2 class="section-title" style="font-family:'Dancing Script',cursive;font-size:clamp(2rem,5vw,4rem);color:var(--magenta);" data-reveal>A Letter Just For You, Kasturi 🌸</h2>
+    <div class="glow-divider"></div>
+    <p class="section-subtitle" data-reveal>Click the envelope to open your letter ✨</p>
+    <div class="envelope-wrapper" id="envelope-wrapper" onclick="openEnvelope()">
+      <div class="envelope">
+        <div class="envelope-body">
+          <div class="envelope-flap" id="envelope-flap"></div>
+          <div class="envelope-seal" id="envelope-seal">💜</div>
+        </div>
+      </div>
+    </div>
+    <p class="envelope-hint" id="envelope-hint">Tap the seal to open 🤫</p>
+  </div>
+
+  <!-- Letter Paper -->
+  <div class="letter-section" id="letter-section">
+    <div class="letter-paper">
+      <div class="letter-header" id="letter-date">June 8, 2026 ✨</div>
+      <div class="letter-salutation">Dear Kasturi,</div>
+      <div class="letter-body" id="letter-body">Who would have thought that two complete strangers would become such an important part of each other's lives? It still feels unreal when I think about how one random text started everything. At that time, we were just two people who barely knew each other, and today, after all this time, you're one of the most precious people in my life. From strangers to best friends, from random conversations to endless calls, from sharing small daily updates to knowing almost every little thing about each other's lives—our journey has been nothing short of beautiful.
+
+We've truly become the ultimate gossip partners and crime partners. We've shared countless happy moments, laughed at the most random things, celebrated each other's achievements, and stood beside each other during difficult days too. We've had our fights as well—many of them, honestly—but somehow we always found our way back. And let's be real, most of the time I was the one convincing Madam because that's just how it works. 😂 But looking back now, even those silly arguments have become memories that make me smile because they only showed how much our friendship mattered.
+
+One thing you probably don't know is that before you came into my life, I was genuinely scared of trusting someone again. I had convinced myself that maybe having a close female best friend just wasn't written in my destiny. I was afraid of getting attached, afraid of being left behind, and afraid of investing my trust again. But then you came along and slowly, without even realizing it, you changed that fear into comfort. From our very first chats to getting to know each other better every day, you made friendship feel effortless and genuine.
+
+And how can I ever forget those days when your parents would go downstairs for a walk and you'd call me? We would talk endlessly about absolutely everything and nothing at the same time. Then suddenly, the moment you'd hear the sound of the door opening, the call would disappear in a second. Those moments were hilarious and are honestly some of my favorite memories. They were simple, but they were ours.
+
+Then came the time when you moved to Parul University in Vadodara. I won't lie—I was scared. A lot. Somewhere in my mind, there was this fear that distance changes people, that maybe this friendship would slowly fade away too. I remember thinking, "Chhod yaar, shayad meri kismat mein close female friendship hai hi nahi." But for once, life proved me completely wrong. Even though you don't believe in destiny, I still think destiny had something beautiful planned for us. Because despite the distance, nothing really changed. Our daily calls continued, our conversations continued, your random gossip sessions continued, and so did our friendship.
+
+And in this entire one-and-a-half-year journey, I've realized something very special—I met one of the most wonderful souls I could have ever asked for. A girl who listens, cares, understands, supports, annoys, argues, laughs, gossips, and somehow manages to make ordinary days feel special. You've become someone whose presence brings comfort, whose happiness genuinely matters to me, and whose friendship I treasure more than words can ever explain.
+
+Thank you for trusting me with your stories, your secrets, your worries, your excitement, and your dreams. Thank you for every late-night conversation, every random call, every laugh, every memory, and every moment you've been there when I needed someone. You have no idea how much your friendship means to me. You've given me countless reasons to smile and reminded me that some people enter our lives unexpectedly and become irreplaceable.
+
+And before I end this, there's something I want to say from the bottom of my heart. If I have ever hurt you, disappointed you, annoyed you, or said something that made you feel bad—even unintentionally—I am really, really, really very sorry. Please know that it was never my intention. You are someone I care about deeply, and the last thing I would ever want is to hurt you. Thank you for being patient with me, understanding me, and accepting me despite all my flaws.
+
+On your special day, I don't just wish for your happiness today—I wish for a lifetime filled with smiles, success, peace, love, endless laughter, and all the beautiful things your heart desires. I hope every dream you carry finds its way to reality. I hope you always stay the amazing, kind-hearted, caring, strong, and beautiful person you are. And most importantly, I hope that no matter where life takes us, this friendship continues to stay exactly what it is today—pure, genuine, and unbreakable.
+
+Happy Birthday to the girl who turned a random text into one of the most beautiful friendships of my life. ❤️
+You'll always be my favorite gossip partner, my favorite headache, and one of the most important people I'll never want to lose. 🫶✨</div>
+      <div class="letter-closing">With all my love and endless gossip,</div>
+      <div class="letter-signature">Your Crime Partner & Best Friend 🤫🤞</div>
+    </div>
+  </div>
+
+  <!-- Flip Cards -->
+  <div class="compliments-section">
+    <div class="section-header" data-reveal style="padding-top:2rem;">
+      <div class="section-tag">💖 Reasons You're Irreplaceable</div>
+      <h2 class="section-title">Things I Love About You ✨</h2>
+      <div class="glow-divider"></div>
+      <p class="section-subtitle">Click each card to see what makes you so special 💕</p>
+    </div>
+    <div class="compliments-grid">
+      <div class="flip-card" onclick="flipCard(this)" data-reveal>
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background:linear-gradient(135deg,#7c3aed,#db2777);">
+            <div class="flip-front-icon">📢</div>
+            <div class="flip-front-label">The Gossip Sessions</div>
+            <div class="flip-front-hint">click to reveal</div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-text">"You are my absolute favourite gossip partner. Nobody understands the drama, the tea, and the random updates quite like you do!"</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="flipCard(this)" data-reveal>
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background:linear-gradient(135deg,#4f46e5,#06b6d4);">
+            <div class="flip-front-icon">🕵️‍♀️</div>
+            <div class="flip-front-label">My Crime Partner</div>
+            <div class="flip-front-hint">click to reveal</div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-text">"Whether it's laughing at the most random things or backing me up in silly fights, you're the ultimate partner-in-crime. Forever."</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="flipCard(this)" data-reveal>
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background:linear-gradient(135deg,#ec4899,#f43f5e);">
+            <div class="flip-front-icon">🌸</div>
+            <div class="flip-front-label">Your Comforting Presence</div>
+            <div class="flip-front-hint">click to reveal</div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-text">"Before you, I was afraid of trusting again. But you came along and effortlessly changed that fear into absolute comfort. Thank you."</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="flipCard(this)" data-reveal>
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background:linear-gradient(135deg,#d946ef,#8b5cf6);">
+            <div class="flip-front-icon">🧠</div>
+            <div class="flip-front-label">Your Endless Patience</div>
+            <div class="flip-front-hint">click to reveal</div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-text">"Thank you for being patient with me, for listening to every worry, and for accepting me with all my flaws. That means everything."</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="flipCard(this)" data-reveal>
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background:linear-gradient(135deg,#f59e0b,#e11d48);">
+            <div class="flip-front-icon">🌐</div>
+            <div class="flip-front-label">Distance Defyer</div>
+            <div class="flip-front-hint">click to reveal</div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-text">"Even after you moved to Vadodara, our bond didn't fade even a little. We proved that distance has absolutely nothing on us."</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" onclick="flipCard(this)" data-reveal>
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background:linear-gradient(135deg,#10b981,#3b82f6);">
+            <div class="flip-front-icon">💝</div>
+            <div class="flip-front-label">The Headache I Love</div>
+            <div class="flip-front-hint">click to reveal</div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-text">"You annoy me, argue with me, support me, and make ordinary days feel beautiful. You are truly, completely irreplaceable. Always."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Certificate -->
+  <div class="final-section">
+    <div class="section-header" data-reveal>
+      <div class="section-tag">🏆 The Official Bestie Award</div>
+      <h2 class="section-title" style="font-family:'Dancing Script',cursive;color:var(--magenta);font-size:clamp(2rem,5vw,4rem);">Your Official Certificate 🎁</h2>
+      <div class="glow-divider"></div>
+      <p class="section-subtitle" style="margin-bottom:2.5rem;">Click below to claim your one-of-a-kind bestie certificate!</p>
+    </div>
+    <button class="final-btn" id="final-btn" onclick="triggerCertificate()">
+      <span>Claim Bestie Certificate</span>
+      <span>🏆💜</span>
+    </button>
+    <div class="certificate-container" id="certificate-box">
+      <div class="certificate-inner">
+        <div class="cert-border-gold"></div>
+        <div class="cert-header">
+          <div class="cert-seal">🏅</div>
+          <h3>Official Friendship Award</h3>
+        </div>
+        <h1 class="cert-title">CERTIFIED CRIME & GOSSIP PARTNER</h1>
+        <p class="cert-presented">This certificate is proudly presented to</p>
+        <h2 class="cert-name">Kasturi 💜</h2>
+        <p class="cert-description">For being the ultimate gossiping accomplice, the most patient listener, the favourite headache, and for successfully maintaining an unbreakable bond across cities. Hereby declared as the irreplaceable Best Friend, forever and always.</p>
+        <div class="cert-footer">
+          <div class="cert-sig">
+            <span class="sig-line">Your Bestie</span>
+            <span class="sig-title">Crime Partner</span>
+          </div>
+          <div class="cert-date-box">
+            <span class="sig-line">June 8, 2026</span>
+            <span class="sig-title">Date of Issue</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-nav" style="margin-top:3rem;">
+      <button class="nav-btn" onclick="goToPage(5)">
+        <span>The Grand Finale 🎆</span>
+      </button>
+    </div>
+    <div style="height:6rem;"></div>
+  </div>
+</div>
+
+<!-- ===================================================
+     PAGE 5 — GRAND FINALE: WISHES JAR, STAR SKY & CELEBRATION
+     =================================================== -->
+<div class="page" id="page5">
+
+  <!-- Firework canvas for this page -->
+  <canvas id="firework-canvas"></canvas>
+
+  <!-- Star sky background -->
+  <div class="star-sky" id="star-sky"></div>
+
+  <!-- Wishes Jar Section -->
+  <div class="wishes-section">
+    <div class="section-header" data-reveal>
+      <div class="section-tag">🌟 Birthday Wishes</div>
+      <h2 class="section-title" style="font-family:'Dancing Script',cursive;color:var(--gold);">A Jar Full of Wishes ✨</h2>
+      <div class="glow-divider" style="background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
+      <p class="section-subtitle">Tap each jar to reveal a wish made especially for you 🫙</p>
+    </div>
+
+    <div class="wish-jars-grid">
+      <div class="wish-jar" onclick="openWishJar(this, 0)" data-reveal>
+        <div class="jar-body">
+          <div class="jar-lid">🍯</div>
+          <div class="jar-glow"></div>
+          <div class="jar-emoji">🌟</div>
+          <div class="jar-label">Wish #1</div>
+        </div>
+        <div class="wish-reveal">
+          <div class="wish-text">I wish for every single dream you carry in your heart to find its way to reality — not someday, but soon. You deserve everything you've ever hoped for. 🌟</div>
+        </div>
+      </div>
+      <div class="wish-jar" onclick="openWishJar(this, 1)" data-reveal>
+        <div class="jar-body">
+          <div class="jar-lid">🍯</div>
+          <div class="jar-glow"></div>
+          <div class="jar-emoji">💜</div>
+          <div class="jar-label">Wish #2</div>
+        </div>
+        <div class="wish-reveal">
+          <div class="wish-text">I wish for this friendship to stay exactly as it is right now — pure, genuine, and unbreakable. No matter where life takes us, I hope we never lose this. 💜</div>
+        </div>
+      </div>
+      <div class="wish-jar" onclick="openWishJar(this, 2)" data-reveal>
+        <div class="jar-body">
+          <div class="jar-lid">🍯</div>
+          <div class="jar-glow"></div>
+          <div class="jar-emoji">😊</div>
+          <div class="jar-label">Wish #3</div>
+        </div>
+        <div class="wish-reveal">
+          <div class="wish-text">I wish for you to always have a reason to smile — every single morning. May your life be filled with moments that make you laugh until your stomach hurts. 😊</div>
+        </div>
+      </div>
+      <div class="wish-jar" onclick="openWishJar(this, 3)" data-reveal>
+        <div class="jar-body">
+          <div class="jar-lid">🍯</div>
+          <div class="jar-glow"></div>
+          <div class="jar-emoji">🏆</div>
+          <div class="jar-label">Wish #4</div>
+        </div>
+        <div class="wish-reveal">
+          <div class="wish-text">I wish for endless success in everything you pursue. I want to see you achieve every single thing you've set your mind to. You are capable of so much more than you know. 🏆</div>
+        </div>
+      </div>
+      <div class="wish-jar" onclick="openWishJar(this, 4)" data-reveal>
+        <div class="jar-body">
+          <div class="jar-lid">🍯</div>
+          <div class="jar-glow"></div>
+          <div class="jar-emoji">🕊️</div>
+          <div class="jar-label">Wish #5</div>
+        </div>
+        <div class="wish-reveal">
+          <div class="wish-text">I wish for peace — real, deep peace of mind. May you never lose sleep over things that don't deserve your energy, and may you always feel loved and valued. 🕊️</div>
+        </div>
+      </div>
+      <div class="wish-jar" onclick="openWishJar(this, 5)" data-reveal>
+        <div class="jar-body">
+          <div class="jar-lid">🍯</div>
+          <div class="jar-glow"></div>
+          <div class="jar-emoji">🤫</div>
+          <div class="jar-label">Secret Wish #6</div>
+        </div>
+        <div class="wish-reveal">
+          <div class="wish-text">And my most secret wish? That even 10 years from now, we're still gossiping about random people, calling each other at midnight, and being each other's absolute favourite headache. 🤫💜</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- "Things I Want for You" Section -->
+  <div class="wantfor-section">
+    <div class="section-header" data-reveal>
+      <div class="section-tag">💌 From My Heart</div>
+      <h2 class="section-title">What I Want For You 🌺</h2>
+      <div class="glow-divider"></div>
+    </div>
+    <div class="wantfor-grid">
+      <div class="wantfor-card" data-reveal style="--card-color:#9b51e0;">
+        <div class="wf-icon">🌸</div>
+        <h4>Your Smile</h4>
+        <p>I want your smile to never fade. Not because life is always easy, but because you are strong enough to find beauty in even the hard days.</p>
+      </div>
+      <div class="wantfor-card" data-reveal style="--card-color:#e8258e;">
+        <div class="wf-icon">💪</div>
+        <h4>Your Strength</h4>
+        <p>I want you to always believe in yourself the way I believe in you. You are way stronger and more capable than you give yourself credit for.</p>
+      </div>
+      <div class="wantfor-card" data-reveal style="--card-color:#56ccf2;">
+        <div class="wf-icon">🌙</div>
+        <h4>Your Peace</h4>
+        <p>I want every night to bring you rest, and every morning to bring you hope. May you find peace in the ordinary and joy in the little things.</p>
+      </div>
+      <div class="wantfor-card" data-reveal style="--card-color:#f2c94c;">
+        <div class="wf-icon">🚀</div>
+        <h4>Your Success</h4>
+        <p>I want every dream you've whispered to me on our late-night calls to become a reality that you can shout from the rooftops someday.</p>
+      </div>
+      <div class="wantfor-card" data-reveal style="--card-color:#f2994a;">
+        <div class="wf-icon">🤝</div>
+        <h4>Genuine People</h4>
+        <p>I want you to always be surrounded by people who love you for exactly who you are — just as raw, real, and wonderful as you already are.</p>
+      </div>
+      <div class="wantfor-card" data-reveal style="--card-color:#10b981;">
+        <div class="wf-icon">🫶</div>
+        <h4>Our Friendship</h4>
+        <p>Most of all, I want this — us — to last forever. Because honestly, finding someone like you was the luckiest random-text moment of my life.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grand Finale Celebration Button -->
+  <div class="finale-section">
+    <div class="section-header" data-reveal>
+      <div class="section-tag">🎆 Grand Finale</div>
+      <h2 class="section-title" style="font-family:'Dancing Script',cursive;color:var(--gold);font-size:clamp(2.5rem,6vw,5rem);">Happy Birthday, Kasturi! 🎂</h2>
+      <div class="glow-divider" style="background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
+      <p class="section-subtitle" style="margin-bottom:3rem;">One final button. The grand finale you've been waiting for... 🎆</p>
+    </div>
+
+    <button class="grand-finale-btn" id="grand-finale-btn" onclick="triggerGrandFinale()">
+      <span class="gf-text">🎂 LAUNCH THE CELEBRATION 🎂</span>
+      <span class="gf-sub">Click for the most epic birthday moment! 🎆</span>
+    </button>
+
+    <!-- Finale Message -->
+    <div class="finale-message" id="finale-message">
+      <div class="finale-inner">
+        <div class="finale-big-emoji">🎉🎂🎉</div>
+        <h2 class="finale-title">Happy Birthday, Bestie! ❤️</h2>
+        <p class="finale-text">
+          From the girl who turned a random text into the most beautiful friendship of my life — 
+          <strong>Happy Birthday, Kasturi.</strong> 🌸<br><br>
+          You'll always be my favourite gossip partner, my favourite headache, my crime partner, 
+          and one of the most important people I'll never want to lose. Thank you for being you. 
+          Thank you for being <em>mine</em> to call my best friend. 🫶<br><br>
+          <span class="finale-quote">"Some people come into our lives, leave footprints on our hearts, 
+          and we are never ever the same." — That's exactly what you did. 💜✨</span>
+        </p>
+        <div class="finale-sign">
+          <span>With all my love, gossip, and crime,</span>
+          <span class="finale-sig">Your Best Friend Forever 🤫🤞</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:8rem;"></div>
+  </div>
+</div>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="Enlarged Memory" />
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
