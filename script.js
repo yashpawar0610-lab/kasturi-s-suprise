@@ -27,6 +27,10 @@ function goToPage(page) {
   $(`#page-dots .page-dot:nth-child(${page})`).classList.add('active');
   pageHistory.push(currentPage);
   currentPage = page;
+  // Reveal any hidden elements on the new page
+  setTimeout(() => revealAllInPage(document.getElementById(`page${page}`)), 100);
+  // Scroll to top
+  window.scrollTo(0, 0);
 }
 function goBack() {
   if (pageHistory.length === 0) return;
@@ -252,6 +256,33 @@ function initLoadingScreen() {
   loadingScreen.addEventListener('click', dismissLoader);
 }
 
+/* ===================== Reveal Observer ===================== */
+function revealAllInPage(pageEl) {
+  if (!pageEl) return;
+  const items = pageEl.querySelectorAll('[data-reveal], .timeline-item, .flip-card, .wantfor-card, .polaroid-card');
+  items.forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), i * 80);
+  });
+}
+
+function initRevealObserver() {
+  const targets = document.querySelectorAll('[data-reveal], .timeline-item, .flip-card, .wantfor-card, .polaroid-card');
+  if (!('IntersectionObserver' in window)) {
+    // Fallback: reveal everything immediately
+    targets.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  targets.forEach(el => obs.observe(el));
+}
+
 /* ===================== Init ===================== */
 document.addEventListener('DOMContentLoaded', () => {
   // hide all pages except first
@@ -262,6 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
     letterBody.dataset.fulltext = letterBody.textContent.trim();
     letterBody.textContent = '';
   }
+  // Init reveal observer
+  initRevealObserver();
+  // Reveal page 1 items immediately
+  revealAllInPage(document.getElementById('page1'));
   // Start loading screen dismissal
   initLoadingScreen();
 });
