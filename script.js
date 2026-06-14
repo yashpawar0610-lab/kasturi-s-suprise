@@ -137,7 +137,11 @@ function updateGossipMeter(val) {
 let typingInterval = null;
 function openEnvelope() {
   const envelope = $('#envelope-wrapper');
-  envelope.classList.add('open');
+  envelope.classList.add('opened');
+  
+  const letterSection = document.querySelector('.letter-section');
+  if (letterSection) letterSection.classList.add('visible');
+
   // typewriter effect after short delay
   setTimeout(startTypingLetter, 800);
 }
@@ -158,7 +162,7 @@ function flipCard(card) {
 /* ===================== Certificate ===================== */
 function triggerCertificate() {
   const certBox = $('#certificate-box');
-  certBox.classList.add('show');
+  certBox.classList.add('visible');
 }
 /* ===================== Wish Jar ===================== */
 function openWishJar(elem, idx) {
