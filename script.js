@@ -206,7 +206,7 @@ function triggerGrandFinale() {
   for(let i=0;i<20;i++) createFirework(Math.random()*fireworkCanvas.width, Math.random()*fireworkCanvas.height);
   // optional: play a sound or display a message
   const msg = $('#finale-message');
-  msg.classList.add('show');
+  msg.classList.add('visible');
 }
 animateFireworks();
 
@@ -303,6 +303,16 @@ document.addEventListener('DOMContentLoaded', () => {
   revealAllInPage(document.getElementById('page1'));
   // Start loading screen dismissal
   initLoadingScreen();
+  
+  // Auto-play music on the very first click anywhere on the page
+  document.body.addEventListener('click', () => {
+    if (music.paused) {
+      music.play().then(() => {
+        const statusTxt = document.getElementById('music-status-txt');
+        if(statusTxt) statusTxt.textContent = 'Playing';
+      }).catch(err => console.log('Autoplay prevented', err));
+    }
+  }, { once: true });
 });
 
 // Export functions for HTML onclick attributes
